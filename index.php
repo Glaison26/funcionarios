@@ -27,8 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $l_erro = 'Falha no Login. Nome ou senha inválido. Verifique os dados e tente novamente !!!';
     } else {
         // procuro senha
-        $c_sql = "SELECT usuarios.senha, usuarios.tipo, usuarios.nome, secretarias.descricao as secretaria, secretarias.id as id_secretaria 
-        FROM usuarios JOIN secretarias ON secretarias.id=usuarios.id_secretaria where usuarios.login='$c_login'";
+        $c_sql = "SELECT usuario.senha, usuario.tipo, usuario.usuario FROM usuario  where usuario.login='$c_login'";
         $result = $conection->query($c_sql);
         $registro = $result->fetch_assoc();
         $c_senha = base64_decode($registro['senha']); // descriptografa senha

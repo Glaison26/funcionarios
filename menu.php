@@ -67,7 +67,7 @@ if (!isset($_SESSION['newsession2'])) {
                 </li>
 
                 <li>
-                    <a href="/pcas/index.php"><img src="\funcionarios\imagens\saida.png" alt="" width="30" height="30"> Sair</a>
+                    <a href="/funcionarios/index.php"><img src="\funcionarios\imagens\saida.png" alt="" width="30" height="30"> Sair</a>
                 </li>
             </ul>
 

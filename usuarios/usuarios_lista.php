@@ -84,7 +84,7 @@ include_once "../lib_gop.php";
     <div class="container-fluid">
 
         <a class="btn btn-success" href="/funcionarios/usuarios/usuarios_novo.php"><span class="glyphicon glyphicon-plus"></span> Incluir</a>
-        <a class="btn btn-secondary" href="/gop/menu.php"><span class="glyphicon glyphicon-off"></span> Voltar</a>
+        <a class="btn btn-secondary" href="/funcionarios/menu.php"><span class="glyphicon glyphicon-off"></span> Voltar</a>
 
         <hr>
         <table class="table table display table-bordered tabusuarios">
@@ -93,6 +93,7 @@ include_once "../lib_gop.php";
                     <th scope="col">Código</th>
                     <th scope="col">Nome do Usuário</th>
                     <th scope="col">Login</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Ativo</th>
                     <th scope="col">Opções</th>
                 </tr>
@@ -101,7 +102,13 @@ include_once "../lib_gop.php";
                 <?php
 
                 // faço a Leitura da tabela com sql
-                $c_sql = "SELECT usuario.id, usuario.usuario, usuario.login, usuario.ativo FROM usuario
+                $c_sql = "SELECT usuario.id, usuario.usuario, usuario.login, usuario.ativo, usuario.tipo, 
+                 case
+                    when usuario.ativo='N' then 'Não'
+                    when usuario.ativo='S' then 'Sim'
+                    END AS status
+                FROM usuario
+
                           ORDER BY usuario.usuario";
                 $result = $conection->query($c_sql);
                 // verifico se a query foi correto
@@ -111,16 +118,17 @@ include_once "../lib_gop.php";
 
                 // insiro os registro do banco de dados na tabela 
                 while ($c_linha = $result->fetch_assoc()) {
-                    $c_custo = mask($c_linha['custo'], 'R$#########');
+                   
                     echo "
                     <tr class='info'>
                     <td>$c_linha[id]</td>
                     <td>$c_linha[usuario]</td>
                     <td>$c_linha[login]</td>
-                    <td>$c_linha[ativo]</td>
+                    <td>$c_linha[tipo]</td>
+                    <td>$c_linha[status]</td>
                     
                     <td>
-                    <a class='btn btn-secondary btn-sm' href='/gop/cadastros/materiais/materiais_editar.php?id=$c_linha[id]'><span class='glyphicon glyphicon-pencil'></span> Editar</a>
+                    <a class='btn btn-secondary btn-sm' href='/funcionarios/usuarios/usuarios_editar.php?id=$c_linha[id]'><span class='glyphicon glyphicon-pencil'></span> Editar</a>
                     <a class='btn btn-danger btn-sm' href='javascript:func()'onclick='confirmacao($c_linha[id])'><span class='glyphicon glyphicon-trash'></span> Excluir</a>
                     </td>
 
