@@ -45,10 +45,10 @@ if (!isset($_SESSION['newsession2'])) {
                     <a href="#compras" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Cadastro</a>
                     <ul class="collapse list-unstyled" id="compras">
                         <li>
-                            <a href="/pcas/consulta_previsoes.php"><img src="\funcionarios\imagens\pessoas.png" alt="" width="30" height="30"> Lista de Funcionários </a>
+                            <a href="/funcionarios/cadastro/cadastro_lista.php"><img src="\funcionarios\imagens\pessoas.png" alt="" width="30" height="30"> Lista de Funcionários </a>
                         </li>
                         <li>
-                            <a href="/pcas/importa_csv.php"><img src="\funcionarios\imagens\emitir.png" alt="" width="30" height="30"> Gerar Lista de envio</a>
+                            <a href="/funcionarios/cadastro/importacao/importa_csv.php"><img src="\funcionarios\imagens\emitir.png" alt="" width="30" height="30"> Gerar Lista de envio</a>
                         </li>
 
                     </ul>

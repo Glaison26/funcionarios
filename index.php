@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     $c_linha = $result->fetch_assoc();
     if ($c_login == 'xxx') {  // usuário e senha para entrar sem senha
-        $_SESSION["newsession2"] = "user";
+        $_SESSION["newsession"] = "user";
         $_SESSION['c_usuario'] = $c_login;
         $_SESSION['c_nome'] = $registro['nome']; // nome do usuário
         header('location: /funcionarios/menu.php');
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $l_erro = 'Falha no Login. Nome ou senha inválido. Verifique os dados e tente novamente !!!';
         } else {
             $l_erro = ' ';
-            $_SESSION["newsession2"] = "user"; // passagem da segurança
+            $_SESSION["newsession"] = "user"; // passagem da segurança
             $_SESSION['c_usuario'] = $c_login; // login digitado
             $_SESSION['c_tipo'] = $registro['tipo']; // tipo do usuário
             $_SESSION['c_nome'] = $registro['nome']; // nome do usuário
