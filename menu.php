@@ -1,7 +1,7 @@
 <?php
 // controle de acesso ao formulário
 session_start();
-if (!isset($_SESSION['newsession2'])) {
+if (!isset($_SESSION['newsession'])) {
     die('Acesso não autorizado!!!');
 }
 ?>
@@ -47,8 +47,11 @@ if (!isset($_SESSION['newsession2'])) {
                         <li>
                             <a href="/funcionarios/cadastro/cadastro_lista.php"><img src="\funcionarios\imagens\pessoas.png" alt="" width="30" height="30"> Lista de Funcionários </a>
                         </li>
+                           <li>
+                            <a href="/funcionarios/cadastro/importacao/importa_csv.php"><img src="\funcionarios\imagens\itabela.png" alt="" width="30" height="30"> Importar Dados</a>
+                        </li>
                         <li>
-                            <a href="/funcionarios/cadastro/importacao/importa_csv.php"><img src="\funcionarios\imagens\emitir.png" alt="" width="30" height="30"> Gerar Lista de envio</a>
+                            <a href=""><img src="\funcionarios\imagens\emitir.png" alt="" width="30" height="30"> Gerar Lista de envio</a>
                         </li>
 
                     </ul>
