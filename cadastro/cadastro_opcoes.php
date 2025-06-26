@@ -1,7 +1,36 @@
 <?php
+session_start();
+if (!isset($_SESSION['newsession'])) {
+    die('Acesso não autorizado!!!');
+}
 include('../conexao.php');
 include('../links2.php');
 include_once "../lib_gop.php";
+// monto sql com as datas
+if ((isset($_POST["btnpesquisa"])) && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
+
+    // formatação de datas para o sql
+    $d_data1 = $_POST['data1'];
+    $d_data1 = date("Y-m-d", strtotime(str_replace('/', '-', $d_data1)));
+    $d_data2 = $_POST['data2'];
+    $d_data2 = date("Y-m-d", strtotime(str_replace('/', '-', $d_data2)));
+    // expressão sql inicia para recursos fisicos
+
+    // montagem do sql para recursos físicos
+    $c_sql = "SELECT  funcionarios.id, funcionarios.nome, funcionarios.telefone, funcionarios.sexo, funcionarios.data_nasc, funcionarios.status,
+                case
+                    when funcionarios.sexo='M' then 'Masculino'
+                    when funcionarios.sexo='F' then 'Feminino'
+                    END AS sexo_c FROM funcionarios
+            WHERE (MONTH(data_nasc) > MONTH('$d_data1') OR (MONTH(data_nasc) = MONTH('$d_data1') AND DAY(data_nasc) >= DAY('$d_data1')))
+            AND (MONTH(data_nasc) < MONTH('$d_data2') OR (MONTH(data_nasc) = MONTH('$d_data2') AND DAY(data_nasc) <= DAY('$d_data2')))
+            ORDER BY MONTH(data_nasc), DAY(data_nasc)";
+    // chamo pagina com os dados a serem selecionados passando a string sql
+    $_SESSION['sql'] = $c_sql;
+    //echo $c_sql;
+    header('location: /funcionarios/cadastro/resultado_lista.php');
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -13,21 +42,6 @@ include_once "../lib_gop.php";
 
 </head>
 
-<script>
-    // função para verificas selct do tipo de solicitação e desebilita/ habilitar espaco fisico ou recurso
-    function verifica(value) {
-        var input_recurso = document.getElementById("recurso");
-        var input_espaco = document.getElementById("espaco");
-
-        if (value == 1) {
-            input_recurso.disabled = false;
-            input_espaco.disabled = true;
-        } else if (value == 2) {
-            input_recurso.disabled = true;
-            input_espaco.disabled = false;
-        }
-    };
-</script>
 
 <body>
     <div class="panel panel-primary class">
@@ -61,15 +75,8 @@ include_once "../lib_gop.php";
                         <h5>Opções de Consulta<h5>
                     </div>
                 </div>
-                
-                <div class="row mb-3">
 
-                    <label class="col-md-2 form-label">No. da Solicitação</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="numero" id="numero" value='<?php echo $c_numero ?>'>
-                    </div>
 
-                </div>
                 <br>
                 <div class="row mb-3">
 
@@ -82,77 +89,6 @@ include_once "../lib_gop.php";
                         <input type="Date" class="form-control" name="data2" id="data2" value='<?php echo date("Y-m-d"); ?>' onkeypress="mascaraData(this)">
                     </div>
                 </div>
-                <br>
-
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Status</label>
-                    <div class="col-sm-3">
-                        <select class="form-select form-select-lg mb-3" id="status" name="status" value="<?php echo $c_status; ?>">
-                            <option>Todos</option>
-                            <option>Aberta</option>
-                            <option>Em Andamento</option>
-                            <option>Concluída</option>
-                        </select>
-                    </div>
-                    <label class="col-sm-1 col-form-label">Tipo</label>
-                    <div class="col-sm-2">
-                        <select class="form-select form-select-lg mb-3" id="tipo" name="tipo" value="<?php echo $c_tipo; ?>">
-                            <option>Todos</option>
-                            <option>Programada</option>
-                            <option>Urgência</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-3">
-
-                    <label class="col-sm-2 col-form-label">Solicitante </label>
-                    <div class="col-sm-3">
-                        <select class="form-select form-select-lg mb-3" id="solicitante" name="solicitante">
-                            <?php
-                            if ($_SESSION['tipo'] <> 'Solicitante') {
-                                echo "<option>Todos</option>";
-                            }
-
-                            // select da tabela de solicitantes
-                            if ($_SESSION['tipo'] <> 'Solicitante') {
-                                $c_sql_sol = "SELECT usuarios.id, usuarios.nome FROM usuarios ORDER BY usuarios.nome";
-                            } else {
-                                $c_login = $_SESSION['c_usuario'];
-                                $c_sql_sol = "SELECT usuarios.id, usuarios.nome FROM usuarios where usuarios.login='$c_login'
-                                 ORDER BY usuarios.nome";
-                            }
-
-                            $result_sol = $conection->query($c_sql_sol);
-                            while ($c_linha = $result_sol->fetch_assoc()) {
-                                echo "  
-                          <option>$c_linha[nome]</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <label class="col-sm-1 col-form-label">Setor </label>
-                    <div class="col-sm-3">
-                        <select class="form-select form-select-lg mb-3" id="setor" name="setor">
-                            <option>Todos</option>
-                            <?php
-                            // select da tabela de setores
-                            $c_sql_setor = "SELECT setores.id, setores.descricao FROM setores ORDER BY setores.descricao";
-                            $result_setor = $conection->query($c_sql_setor);
-                            while ($c_linha = $result_setor->fetch_assoc()) {
-                                echo "<option>$c_linha[descricao]</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label class="col-md-2 form-label">Descritivo</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" name="descritivo" id="descritivo">
-                    </div>
-                </div>
-
-
             </form>
         </div>
     </div>
