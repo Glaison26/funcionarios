@@ -4,6 +4,7 @@ session_start();
 if (!isset($_SESSION['newsession'])) {
     die('Acesso não autorizado!!!');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +18,6 @@ if (!isset($_SESSION['newsession'])) {
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -51,7 +51,7 @@ if (!isset($_SESSION['newsession'])) {
                             <a href="/funcionarios/cadastro/importacao/importa_csv.php"><img src="\funcionarios\imagens\itabela.png" alt="" width="30" height="30"> Importar Dados</a>
                         </li>
                         <li>
-                            <a href=""><img src="\funcionarios\imagens\emitir.png" alt="" width="30" height="30"> Gerar Lista de envio</a>
+                            <a href="/funcionarios/cadastro/cadastro_opcoes.php"><img src="\funcionarios\imagens\emitir.png" alt="" width="30" height="30"> Gerar Lista de envio</a>
                         </li>
 
                     </ul>

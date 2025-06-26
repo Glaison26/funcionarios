@@ -1,10 +1,7 @@
 <?php
-$dataString = "10/03/2024";
+$dataString = '24/04/1990';
+$dataString = str_replace('/','-',$dataString);
 $timestamp = strtotime($dataString);
-
-if ($timestamp !== false) {
-  echo date("Y-m-d", $timestamp); // Saída: 10/03/2024 10:30:00
-} else {
-  echo "Formato de data inválido.";
-}
-?>
+echo 'time stamp' . $timestamp;
+$d_data_aniv = date("Y-m-d", $timestamp);
+echo 'd_data_aniv' . $d_data_aniv;

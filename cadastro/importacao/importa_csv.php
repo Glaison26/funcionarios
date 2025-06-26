@@ -52,13 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //$c_telefone = $linha[6];
             $c_sexo = $linha[1];
             $dataString = $linha[3];
+            $dataString = $dataString = str_replace('/','-',$dataString);
             $timestamp = strtotime($dataString);
             $d_data_aniv = date("Y-m-d", $timestamp);
-
             // Criar a QUERY para salvar o funcionario no banco de dados
             $query = "INSERT INTO funcionarios (nome,telefone,sexo,data_nasc)
-                VALUES ('$c_nome', '', '$c_sexo', '$d_data_aniv')";
-                echo $query;
+                VALUES ('$c_nome','', '$c_sexo', '$d_data_aniv')";
+               
             $result = $conection->query($query);
 
             // formatação com mascara para datas do excell
