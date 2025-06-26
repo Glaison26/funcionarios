@@ -84,7 +84,7 @@ $c_sql = $_SESSION['sql'];
     <br>
     <div class="container-fluid">
 
-        <button type="submit" class="btn btn-primary" href=""><img src="\funcionarios\imagens\salvar.png" alt="" width="25" height="25"> Gerar arquivo de Envio</button>
+        <a class='btn btn btn-sm' class="btn btn-primary" href='\funcionarios\cadastro\gerar_csv.php'><img src='\funcionarios\imagens\itabela.png' alt='' width='25' height='25'> Gerar Arquivo</a>
         <a class="btn" href="/funcionarios/menu.php"><span class="glyphicon glyphicon-off"></span> Voltar</a>
 
         <hr>
