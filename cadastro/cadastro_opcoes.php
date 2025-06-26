@@ -27,6 +27,8 @@ if ((isset($_POST["btnpesquisa"])) && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
             ORDER BY MONTH(data_nasc), DAY(data_nasc)";
     // chamo pagina com os dados a serem selecionados passando a string sql
     $_SESSION['sql'] = $c_sql;
+    $_SESSION['c_data1']=$d_data1;
+    $_SESSION['c_data2']=$d_data2;
     //echo $c_sql;
     header('location: /funcionarios/cadastro/resultado_lista.php');
 }
