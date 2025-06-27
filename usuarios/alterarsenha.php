@@ -139,7 +139,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
 
-
                 <div class="row mb-3" align="center">
                     <button style="margin-right: 15px;margin-left: 15px;" name="btnentra" type="submit" class="btn"><span class='glyphicon glyphicon-check'></span> Confirmar</button>
                     <a class='btn' href='/funcionarios/menu.php'><span class='glyphicon glyphicon-log-out'></span> Voltar</a>
