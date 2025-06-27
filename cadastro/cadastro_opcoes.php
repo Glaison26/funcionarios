@@ -22,7 +22,7 @@ if ((isset($_POST["btnpesquisa"])) && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
                     when funcionarios.sexo='M' then 'Masculino'
                     when funcionarios.sexo='F' then 'Feminino'
                     END AS sexo_c FROM funcionarios
-            WHERE (MONTH(data_nasc) > MONTH('$d_data1') OR (MONTH(data_nasc) = MONTH('$d_data1') AND DAY(data_nasc) >= DAY('$d_data1')))
+            WHERE   (MONTH(data_nasc) > MONTH('$d_data1') OR (MONTH(data_nasc) = MONTH('$d_data1') AND DAY(data_nasc) >= DAY('$d_data1')))
             AND (MONTH(data_nasc) < MONTH('$d_data2') OR (MONTH(data_nasc) = MONTH('$d_data2') AND DAY(data_nasc) <= DAY('$d_data2')))
             ORDER BY MONTH(data_nasc), DAY(data_nasc)";
     // chamo pagina com os dados a serem selecionados passando a string sql

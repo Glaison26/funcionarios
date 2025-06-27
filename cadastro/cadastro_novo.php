@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $c_data = $_POST['data'];
     do {
         // faço a Leitura da tabela com sql
-        $c_sql = "Insert into funcionarios (nome,telefone,sexo,data_nasc)" .
-            "Value ('$c_nome', '$c_telefone', '$c_sexo', '$c_data')";
+        $c_sql = "Insert into funcionarios (nome,telefone,sexo,data_nasc,status)" .
+            "Value ('$c_nome', '$c_telefone', '$c_sexo', '$c_data','S')";
 
         $result = $conection->query($c_sql);
         // verifico se a query foi correto
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Telefone (*)</label>
                 <div class="col-sm-3">
-                    <input type="tel" placeholder="(99)9999-9999" onkeyup="handlePhone(event)" maxlength="40" class="form-control" name="telefone" value="<?php echo $c_telefone; ?>" required>
+                    <input type="tel" placeholder="9999-9999" maxlength="40" class="form-control" name="telefone" value="<?php echo $c_telefone; ?>" required>
                 </div>
 
             </div>

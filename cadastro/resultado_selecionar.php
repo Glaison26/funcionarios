@@ -14,10 +14,10 @@ $c_id = $_GET["id"];
 $c_sql = "select funcionarios.status from funcionarios where id=$c_id";
 $result = $conection->query($c_sql);
 $c_linha = $result->fetch_assoc();
-if ($c_linha['status']=='')
+if ($c_linha['status']=='S')
   $c_status='N';
 else
-  $c_status='';
+  $c_status='S';
 // alteração do campo de geração de registro da preventiva
 $c_sql = "update funcionarios set status='$c_status' where id=$c_id";
 $result = $conection->query($c_sql);

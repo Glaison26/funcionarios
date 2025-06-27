@@ -19,7 +19,7 @@ $resultado = fopen("php://output", 'w');
 // faço a Leitura da tabela com sql
 
 $c_sql = "SELECT funcionarios.nome, funcionarios.telefone,  funcionarios.data_nasc, funcionarios.sexo FROM funcionarios
-            WHERE (MONTH(data_nasc) > MONTH('$d_data1') OR (MONTH(data_nasc) = MONTH('$d_data1') AND DAY(data_nasc) >= DAY('$d_data1')))
+            WHERE (status<>'N') and (MONTH(data_nasc) > MONTH('$d_data1') OR (MONTH(data_nasc) = MONTH('$d_data1') AND DAY(data_nasc) >= DAY('$d_data1')))
             AND (MONTH(data_nasc) < MONTH('$d_data2') OR (MONTH(data_nasc) = MONTH('$d_data2') AND DAY(data_nasc) <= DAY('$d_data2')))
             ORDER BY MONTH(data_nasc), DAY(data_nasc)";
             //echo $c_sql;
@@ -31,12 +31,7 @@ $cabecalho = [
     'Sexo'
 ];
 
-//$cabecalho = mb_convert_encoding($cabecalho, "ISO-8859-1", "UTF-8");
-// Abrir o arquivo
-$arquivo = fopen('contatos.csv', 'w');
 
-// Escrever o cabeçalho no arquivo
-//fputcsv($resultado, $cabecalho, ';');
 // verifico se a query foi correto
 if (!$result) {
     die("Erro ao Executar Sql!!" . $conection->connect_error);
@@ -45,7 +40,7 @@ if (!$result) {
 // Array de dados
 // insiro os registro do banco de dados na tabela 
 while ($c_linha2 = $result->fetch_assoc()) {
-    $c_linha2 = str_replace('"',' ',$c_linha2);
+    $c_linha2 = str_replace('(31)','',$c_linha2);
     fputcsv($resultado, $c_linha2, ';');
 }
 // Fechar arquivo

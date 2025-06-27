@@ -1,7 +1,4 @@
 <?php
-$dataString = '24/04/1990';
-$dataString = str_replace('/','-',$dataString);
-$timestamp = strtotime($dataString);
-echo 'time stamp' . $timestamp;
-$d_data_aniv = date("Y-m-d", $timestamp);
-echo 'd_data_aniv' . $d_data_aniv;
+$string = '"Esta é uma string com aspas duplas"';
+$nova_string = str_replace('"', '', $string);
+echo $nova_string; // Saída: Esta é uma string com aspas duplas
