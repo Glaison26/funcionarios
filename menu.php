@@ -64,7 +64,7 @@ if (!isset($_SESSION['newsession'])) {
                             <a href="/funcionarios/usuarios/usuarios_lista.php"><img src="\funcionarios\imagens\usuario.png" alt="" width="30" height="30"> Cadastro de usuários</a>
                         </li>
                         <li>
-                            <a href="/pcas/alterarsenha.php"><img src="\funcionarios\imagens\senha.png" alt="" width="30" height="30"> Alterar Senha</a>
+                            <a href="/funcionarios/usuarios/alterarsenha.php"><img src="\funcionarios\imagens\senha.png" alt="" width="30" height="30"> Alterar Senha</a>
                         </li>
                     </ul>
                 </li>

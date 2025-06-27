@@ -96,7 +96,7 @@ $c_sql = $_SESSION['sql'];
                     <th scope="col">Telefone</th>
                     <th scope="col">Sexo</th>
                     <th scope="col">Data Nascimento</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Enviar</th>
                     <th scope="col">Opções</th>
                 </tr>
             </thead>
@@ -113,9 +113,9 @@ $c_sql = $_SESSION['sql'];
                 while ($c_linha = $result->fetch_assoc()) {
                     $c_data_nasc = date("d-m-Y", strtotime(str_replace('/', '-', $c_linha['data_nasc'])));
                     if ($c_linha['status'] == 'N')
-                        $c_status = 'Não Gerar';
+                        $c_status = "<img src='\gop\images\cancelar.png' alt='' width='25' height='25'>";
                     else
-                        $c_status = 'Gerar';
+                        $c_status = "<img src='\gop\images\certo.png' alt='' width='25' height='25'>";
                     echo "
                     <tr class='info'>
                     <td>$c_linha[id]</td>
@@ -123,7 +123,7 @@ $c_sql = $_SESSION['sql'];
                     <td>$c_linha[telefone]</td>
                     <td>$c_linha[sexo_c]</td>
                     <td>$c_data_nasc</td>
-                    <td>$c_status</td>
+                    <td style='text-align: center;'>$c_status</td>
                                        
                     <td>
                      <a class='btn btn-sm' href='/funcionarios/cadastro/resultado_selecionar.php?id=$c_linha[id]'><img src='\gop\images\selecionar.png' alt='' width='25' height='25'> Marcar/Desmarcar</a>
