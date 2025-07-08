@@ -87,7 +87,7 @@ include_once "../lib_gop.php";
         <a class="btn btn-secondary" href="/funcionarios/menu.php"><span class="glyphicon glyphicon-off"></span> Voltar</a>
 
         <hr>
-        <table class="table table display table-bordered tabfuncionarios">
+        <table class="table table display table-active tabfuncionarios">
             <thead class="thead">
                 <tr>
                     <th scope="col">Código</th>
@@ -95,7 +95,7 @@ include_once "../lib_gop.php";
                     <th scope="col">Telefone</th>
                     <th scope="col">Sexo</th>
                     <th scope="col">Data Nascimento</th>
-                    <th scope="col">Opções</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -126,8 +126,8 @@ include_once "../lib_gop.php";
                     <td>$c_data_nasc</td>
                                        
                     <td>
-                    <a class='btn btn-secondary btn-sm' href='/funcionarios/cadastro/cadastro_editar.php?id=$c_linha[id]'><span class='glyphicon glyphicon-pencil'></span> Editar</a>
-                    <a class='btn btn-danger btn-sm' href='javascript:func()'onclick='confirmacao($c_linha[id])'><span class='glyphicon glyphicon-trash'></span> Excluir</a>
+                    <a class='btn' title='Editar registro' href='/funcionarios/cadastro/cadastro_editar.php?id=$c_linha[id]'><span class='glyphicon glyphicon-pencil'></span></a>
+                    <a class='btn' title='Excluir registro' href='javascript:func()'onclick='confirmacao($c_linha[id])'><span class='glyphicon glyphicon-trash'></span></a>
                     </td>
 
                     </tr>

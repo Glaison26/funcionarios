@@ -38,7 +38,7 @@ $c_sql = $_SESSION['sql'];
                 "order": [1, 'asc'],
                 "aoColumnDefs": [{
                     'bSortable': false,
-                    'aTargets': [5]
+                    'aTargets': [6]
                 }, {
                     'aTargets': [0],
                     "visible": false
@@ -88,7 +88,7 @@ $c_sql = $_SESSION['sql'];
         <a class="btn" href="/funcionarios/menu.php"><span class="glyphicon glyphicon-off"></span> Voltar</a>
 
         <hr>
-        <table class="table table display table-bordered tabfuncionarios">
+        <table class="table table display table-active tabfuncionarios">
             <thead class="thead">
                 <tr>
                     <th scope="col">Código</th>
@@ -96,8 +96,8 @@ $c_sql = $_SESSION['sql'];
                     <th scope="col">Telefone</th>
                     <th scope="col">Sexo</th>
                     <th scope="col">Data Nascimento</th>
-                    <th scope="col">Enviar</th>
-                    <th scope="col">Opções</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Alterar Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -124,9 +124,8 @@ $c_sql = $_SESSION['sql'];
                     <td>$c_linha[sexo_c]</td>
                     <td>$c_data_nasc</td>
                     <td style='text-align: center;'>$c_status</td>
-                                       
                     <td>
-                     <a class='btn btn-sm' href='/funcionarios/cadastro/resultado_selecionar.php?id=$c_linha[id]'><img src='\gop\images\selecionar.png' alt='' width='25' height='25'> Marcar/Desmarcar</a>
+                     <a class='btn btn-sm' href='/funcionarios/cadastro/resultado_selecionar.php?id=$c_linha[id]'><img src='\gop\images\selecionar.png' alt='' width='25' height='25'></a>
                    
                     </td>
 
