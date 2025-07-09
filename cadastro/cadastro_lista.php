@@ -12,7 +12,7 @@ include_once "../lib_gop.php";
 <html lang="en">
 
 <body>
-
+   <!-- Script para exclusão do registro -->
     <script language="Javascript">
         function confirmacao(id) {
             var resposta = confirm("Deseja remover esse registro?");
@@ -28,7 +28,7 @@ include_once "../lib_gop.php";
         }
     </script>
 
-
+   <!-- script jquery para tabela de funcionários -->
     <script>
         $(document).ready(function() {
             $('.tabfuncionarios').DataTable({
@@ -82,10 +82,8 @@ include_once "../lib_gop.php";
     </div>
     <br>
     <div class="container-fluid">
-
         <a class="btn btn-success" href="/funcionarios/cadastro/cadastro_novo.php"><span class="glyphicon glyphicon-plus"></span> Incluir</a>
         <a class="btn btn-secondary" href="/funcionarios/menu.php"><span class="glyphicon glyphicon-off"></span> Voltar</a>
-
         <hr>
         <table class="table table display table-active tabfuncionarios">
             <thead class="thead">
@@ -100,7 +98,6 @@ include_once "../lib_gop.php";
             </thead>
             <tbody>
                 <?php
-
                 // faço a Leitura da tabela com sql
                 $c_sql = "SELECT funcionarios.id, funcionarios.nome, funcionarios.telefone, funcionarios.sexo, funcionarios.data_nasc,
                 case
@@ -113,7 +110,6 @@ include_once "../lib_gop.php";
                 if (!$result) {
                     die("Erro ao Executar Sql!!" . $conection->connect_error);
                 }
-
                 // insiro os registro do banco de dados na tabela 
                 while ($c_linha = $result->fetch_assoc()) {
                     $c_data_nasc = date("d-m-Y", strtotime(str_replace('/', '-', $c_linha['data_nasc'])));
@@ -124,7 +120,7 @@ include_once "../lib_gop.php";
                     <td>$c_linha[telefone]</td>
                     <td>$c_linha[sexo_c]</td>
                     <td>$c_data_nasc</td>
-                                       
+                                     
                     <td>
                     <a class='btn' title='Editar registro' href='/funcionarios/cadastro/cadastro_editar.php?id=$c_linha[id]'><span class='glyphicon glyphicon-pencil'></span></a>
                     <a class='btn' title='Excluir registro' href='javascript:func()'onclick='confirmacao($c_linha[id])'><span class='glyphicon glyphicon-trash'></span></a>

@@ -8,14 +8,12 @@ include('../links2.php');
 include_once "../lib_gop.php";
 // monto sql com as datas
 if ((isset($_POST["btnpesquisa"])) && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
-
     // formatação de datas para o sql
     $d_data1 = $_POST['data1'];
     $d_data1 = date("Y-m-d", strtotime(str_replace('/', '-', $d_data1)));
     $d_data2 = $_POST['data2'];
     $d_data2 = date("Y-m-d", strtotime(str_replace('/', '-', $d_data2)));
     // expressão sql inicia para recursos fisicos
-
     // montagem do sql para recursos físicos
     $c_sql = "SELECT  funcionarios.id, funcionarios.nome, funcionarios.telefone, funcionarios.sexo, funcionarios.data_nasc, funcionarios.status,
                 case
