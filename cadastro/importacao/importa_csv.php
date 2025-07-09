@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //var_dump($linha);
             // Substituir os links da QUERY pelos valores
             $c_nome = $linha[2];
-            //$c_telefone = $linha[6];
+            $c_telefone = $linha[4];
             $c_sexo = $linha[1];
             $dataString = $linha[3];
             $dataString = $dataString = str_replace('/','-',$dataString);
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $d_data_aniv = date("Y-m-d", $timestamp);
             // Criar a QUERY para salvar o funcionario no banco de dados
             $query = "INSERT INTO funcionarios (nome,telefone,sexo,data_nasc,status)
-                VALUES ('$c_nome','', '$c_sexo', '$d_data_aniv','S')";
+                VALUES ('$c_nome','$c_telefone', '$c_sexo', '$d_data_aniv','S')";
                
             $result = $conection->query($query);
 
