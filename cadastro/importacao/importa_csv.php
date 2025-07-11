@@ -5,7 +5,7 @@ if (!isset($_SESSION['newsession'])) {
     die('Acesso não autorizado!!!');
 }
 include('../../conexao.php');
- $i_progresso = 0;
+$i_progresso = 0;
 // rotina para entrada do usuário
 $c_msg = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $linhas_importadas = 0;
     $linhas_nao_importadas = 0;
     $pca_nao_importado = "";
-   
+
 
     // Verificar se é arquivo csv
     if (($arquivo['type'] == "text/csv") && ($c_msg == "")) {
@@ -32,11 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Ler os dados do arquivo
         $dados_arquivo = fopen($arquivo['tmp_name'], "r");
         $c_msg = "Importação não completada";
-        
+
         // Percorrer os dados do arquivo
         while ($linha = fgetcsv($dados_arquivo, 1000, ";")) {
             // Como ignorar a primeira linha do Excel
-
+            $c_status='S';
             if ($linha_cabecalho < $i_cabec) {
                 $linha_cabecalho++;
                 continue;
@@ -54,8 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $c_telefone = str_replace('-', '', $c_telefone);
             if (strlen(rtrim($c_telefone)) < 9)
                 $c_telefone = '9' . $c_telefone;
-            if (strlen(rtrim($c_telefone)) < 9)
+            if (strlen(rtrim($c_telefone)) < 9) {
                 $c_telefone = '';
+                $c_status ='N';
+            }
             $c_sexo = substr($linha[1], 0, 1);
             $dataString = $linha[3];
             $dataString = $dataString = str_replace('/', '-', $dataString);
@@ -63,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $d_data_aniv = date("Y-m-d", $timestamp);
             // Criar a QUERY para salvar o funcionario no banco de dados
             $query = "INSERT INTO funcionarios (nome,telefone,sexo,data_nasc,status)
-                VALUES ('$c_nome','$c_telefone', '$c_sexo', '$d_data_aniv','S')";
+                VALUES ('$c_nome','$c_telefone', '$c_sexo', '$d_data_aniv','$c_status')";
 
             $result = $conection->query($query);
             $i_progresso++;
@@ -114,7 +116,7 @@ function converter(&$dados_arquivo)
             </div>
                 ";
         }
-         echo "<div class='alert alert-success'>
+        echo "<div class='alert alert-success'>
                 <strong>Progresso: $i_progresso </strong>
             </div>";
         ?>
@@ -123,7 +125,7 @@ function converter(&$dados_arquivo)
             <div class="alert alert-success">
                 <strong>Selecione arquivo para importação!!! </strong>
             </div>
-           
+
             <label>Arquivo: </label>
             <input type="file" name="arquivo" accept="text/csv"><br><br>
 
