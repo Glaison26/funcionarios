@@ -9,30 +9,22 @@ $i_progresso = 0;
 // rotina para entrada do usuário
 $c_msg = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     // Limpar o buffer de saída
     ob_start();
-
     // Receber o arquivo do formulário
     $arquivo = $_FILES['arquivo'];
     //var_dump($arquivo);
-
     // Variáveis de validação
     $linha_cabecalho = 1;
     $linhas_importadas = 0;
     $linhas_nao_importadas = 0;
     $pca_nao_importado = "";
-
-
     // Verificar se é arquivo csv
     if (($arquivo['type'] == "text/csv") && ($c_msg == "")) {
-
         $i_cabec = 2;
-
         // Ler os dados do arquivo
         $dados_arquivo = fopen($arquivo['tmp_name'], "r");
         $c_msg = "Importação não completada";
-
         // Percorrer os dados do arquivo
         while ($linha = fgetcsv($dados_arquivo, 1000, ";")) {
             // Como ignorar a primeira linha do Excel
@@ -44,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($linha[2] == '') {
                 continue;
             }
-
             array_walk_recursive($linha, 'converter');
             //var_dump($linha);
             // Substituir os links da QUERY pelos valores
@@ -116,9 +107,7 @@ function converter(&$dados_arquivo)
             </div>
                 ";
         }
-        echo "<div class='alert alert-success'>
-                <strong>Progresso: $i_progresso </strong>
-            </div>";
+     
         ?>
         <!-- Formulario para enviar arquivo .csv -->
         <form method="post" enctype="multipart/form-data">
