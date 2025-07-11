@@ -5,10 +5,8 @@ if (!isset($_SESSION['newsession'])) {
     die('Acesso não autorizado!!!');
 }
 include('../../conexao.php');
+ $i_progresso = 0;
 // rotina para entrada do usuário
-
-
-
 $c_msg = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -24,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $linhas_importadas = 0;
     $linhas_nao_importadas = 0;
     $pca_nao_importado = "";
+   
 
     // Verificar se é arquivo csv
     if (($arquivo['type'] == "text/csv") && ($c_msg == "")) {
@@ -33,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Ler os dados do arquivo
         $dados_arquivo = fopen($arquivo['tmp_name'], "r");
         $c_msg = "Importação não completada";
+        
         // Percorrer os dados do arquivo
         while ($linha = fgetcsv($dados_arquivo, 1000, ";")) {
             // Como ignorar a primeira linha do Excel
@@ -50,10 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Substituir os links da QUERY pelos valores
             $c_nome = $linha[2];
             $c_telefone = $linha[4];
-            $c_telefone = str_replace('1)','',$c_telefone);
-           
-            $c_sexo = substr($linha[1], 0, 1); 
-           
+            $c_telefone = str_replace('1)', '', $c_telefone);
+            $c_telefone = str_replace('-', '', $c_telefone);
+            if (strlen(rtrim($c_telefone)) < 9)
+                $c_telefone = '9' . $c_telefone;
+            if (strlen(rtrim($c_telefone)) < 9)
+                $c_telefone = '';
+            $c_sexo = substr($linha[1], 0, 1);
             $dataString = $linha[3];
             $dataString = $dataString = str_replace('/', '-', $dataString);
             $timestamp = strtotime($dataString);
@@ -63,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 VALUES ('$c_nome','$c_telefone', '$c_sexo', '$d_data_aniv','S')";
 
             $result = $conection->query($query);
-
+            $i_progresso++;
             // formatação com mascara para datas do excell
         }
         $c_msg = "Importação Finalizada com sucesso!!";
@@ -111,12 +114,16 @@ function converter(&$dados_arquivo)
             </div>
                 ";
         }
+         echo "<div class='alert alert-success'>
+                <strong>Progresso: $i_progresso </strong>
+            </div>";
         ?>
         <!-- Formulario para enviar arquivo .csv -->
         <form method="post" enctype="multipart/form-data">
             <div class="alert alert-success">
                 <strong>Selecione arquivo para importação!!! </strong>
             </div>
+           
             <label>Arquivo: </label>
             <input type="file" name="arquivo" accept="text/csv"><br><br>
 
