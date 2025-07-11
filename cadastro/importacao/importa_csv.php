@@ -50,20 +50,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Substituir os links da QUERY pelos valores
             $c_nome = $linha[2];
             $c_telefone = $linha[4];
-            $c_sexo = $linha[1];
+            $c_telefone = str_replace('1)','',$c_telefone);
+           
+            $c_sexo = substr($linha[1], 0, 1); 
+           
             $dataString = $linha[3];
-            $dataString = $dataString = str_replace('/','-',$dataString);
+            $dataString = $dataString = str_replace('/', '-', $dataString);
             $timestamp = strtotime($dataString);
             $d_data_aniv = date("Y-m-d", $timestamp);
             // Criar a QUERY para salvar o funcionario no banco de dados
             $query = "INSERT INTO funcionarios (nome,telefone,sexo,data_nasc,status)
                 VALUES ('$c_nome','$c_telefone', '$c_sexo', '$d_data_aniv','S')";
-               
+
             $result = $conection->query($query);
 
             // formatação com mascara para datas do excell
         }
-        $c_msg = "Importação Fianalizada com sucesso!!";
+        $c_msg = "Importação Finalizada com sucesso!!";
     }
 }
 
