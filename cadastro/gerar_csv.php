@@ -10,7 +10,7 @@ header('Content-Disposition: attachment; filename=contatos.csv');
 // Gravar no buffer
 //$resultado = fopen("php://output", 'w');
 //$caminho_pasta = '/laragon/www/funcionarios/docs/';
-$caminho_pasta = '/docs/envios/';
+$caminho_pasta = '/funcionarios/envio/';
 $resultado = 'contatos.csv';
 $resultado = $caminho_pasta.$resultado;
 $resultado = fopen($resultado, 'w');
@@ -46,4 +46,19 @@ while ($c_linha2 = $result->fetch_assoc()) {
 }
 // Fechar arquivo
 fclose($resultado);
+$c_sql = "SELECT funcionarios.nome, funcionarios.telefone,  funcionarios.data_nasc, funcionarios.sexo FROM funcionarios
+            WHERE (status<>'N') and (MONTH(data_nasc) > MONTH('$d_data1') OR (MONTH(data_nasc) = MONTH('$d_data1') AND DAY(data_nasc) >= DAY('$d_data1')))
+            AND (MONTH(data_nasc) < MONTH('$d_data2') OR (MONTH(data_nasc) = MONTH('$d_data2') AND DAY(data_nasc) <= DAY('$d_data2')))
+            ORDER BY MONTH(data_nasc), DAY(data_nasc)";
+            //echo $c_sql;
+$result2 = $conection->query($c_sql);
+// limpo a tabela de envio para nova gravação
+$c_sql_del = "delete from envio";
+$result_del = $conection->query($c_sql_del);
+// gero resultado na tabela de envio do bancos de dados
+while ($c_linha2 = $result2->fetch_assoc()) {
+    // insiro registro via sql
+    $c_sql2 = "Insert into envio (nome,telefone,data,sexo) value ('$c_linha2[nome]', '$c_linha2[telefone]', '$c_linha2[data_nasc]', '$c_linha2[sexo]')";
+    $result3 = $conection->query($c_sql2);
+}
 ?>
