@@ -45,4 +45,5 @@ while ($c_linha2 = $result->fetch_assoc()) {
 }
 // Fechar arquivo
 fclose($resultado);
+
 ?>
