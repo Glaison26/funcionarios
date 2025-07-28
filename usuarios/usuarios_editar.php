@@ -134,14 +134,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {  // metodo get para carregar dados no
         <br>
         <?php
         if (!empty($msg_erro)) {
-            echo "
-            <div class='alert alert-warning' role='alert'>
-                <div style='padding-left:15px;'>
+            echo '
+            <div class="alert alert-warning" role="alert">
+                <div style="padding-left:15px;">
                     
                 </div>
-                <h4><img Align='left' src='\gop\images\aviso.png' alt='30' height='35'> $msg_erro</h4>
+                <h4><img Align="left" src="\funcionarios\imagens\aviso.png" alt="30" height="35"> $msg_erro</h4>
             </div>
-            ";
+            ';
         }
         ?>
 

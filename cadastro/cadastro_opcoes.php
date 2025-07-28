@@ -55,7 +55,7 @@ if ((isset($_POST["btnpesquisa"])) && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
         <div class="container -my5">
             <div class='alert alert-info' role='alert'>
                 <div style="padding-left:15px;">
-                    <img Align="left" src="\gop\images\escrita.png" alt="30" height="35">
+                    <img Align="left" src="\funcionarios\imagens\escrita.png" alt="30" height="35">
 
                 </div>
                 <h5>Selecione o período para resultado de envio</h5>
@@ -64,9 +64,9 @@ if ((isset($_POST["btnpesquisa"])) && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
                 <div style="padding-top:5px;padding-bottom:5px">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <button type="submit" name='btnpesquisa' id='btnpesquisa' class="btn btn btn-sm"><img src="\gop\images\lupa.png" alt="" width="20" height="20"></span> Pesquisar</button>
+                            <button type="submit" name='btnpesquisa' id='btnpesquisa' class="btn btn btn-sm"><img src="\funcionarios\imagens\lupa.png" alt="" width="20" height="20"></span> Pesquisar</button>
                             <!--<a class="btn btn btn-sm" href="#"><img src="\gop\images\eraser.png" alt="" width="25" height="25"> Limpar pesquisa</a> -->
-                            <a class="btn btn btn-sm" href="\funcionarios\menu.php"><img src="\gop\images\saida.png" alt="" width="25" height="25"> Voltar</a>
+                            <a class="btn btn btn-sm" href="\funcionarios\menu.php"><img src="\funcionarios\imagens\saida.png" alt="" width="25" height="25"> Voltar</a>
                         </div>
                     </div>
                 </div>

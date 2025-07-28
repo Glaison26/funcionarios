@@ -120,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div class='alert alert-info' role='alert'>
             <div style="padding-left:15px;">
-                <img Align="left" src="\gop\images\escrita.png" alt="30" height="35">
+                <img Align="left" src="\funcionarios\images\escrita.png" alt="30" height="35">
 
             </div>
             <h5>Campos com (*) são obrigatórios. A senha do usário deve conter pelo menos 1 letra do alfabeto, 1 caracter numérico, no  mínimo 8 caracteres e no máximo 30 caracteres</h5>
@@ -129,14 +129,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <br>
         <?php
         if (!empty($msg_erro)) {
-            echo "
-            <div class='alert alert-warning' role='alert'>
-                <div style='padding-left:15px;'>
+            echo '
+            <div class="alert alert-warning" role="alert">
+                <div style="padding-left:15px;">
                     
                 </div>
-                <h4><img Align='left' src='\gop\images\aviso.png' alt='30' height='35'> $msg_erro</h4>
+                <h4><img Align="left" src="\funcionarios\images\aviso.png" alt="30" height="35"> $msg_erro</h4>
             </div>
-            ";
+            ';
         }
         ?>
         <form method="post">

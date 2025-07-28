@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div class='alert alert-info' role='alert'>
             <div style="padding-left:15px;">
-                <img Align="left" src="\gop\images\escrita.png" alt="30" height="35">
+                <img Align="left" src="\funcionarios\imagens\escrita.png" alt="30" height="35">
 
             </div>
             <h5>Campos com (*) são obrigatórios</h5>
@@ -93,14 +93,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <?php
         if (!empty($msg_erro)) {
-            echo "
-            <div class='alert alert-warning' role='alert'>
-                <div style='padding-left:15px;'>
+            echo '
+            <div class="alert alert-warning" role="alert">
+                <div style="padding-left:15px;">
                     
                 </div>
-                <h4><img Align='left' src='\gop\images\aviso.png' alt='30' height='35'> $msg_erro</h4>
+                <h4><img Align="left" src="\funcionarios\imagens\aviso.png" alt="30" height="35"> $msg_erro</h4>
             </div>
-            ";
+            ';
         }
         ?>
         <form method="post">
