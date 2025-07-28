@@ -27,9 +27,7 @@
 <div style="padding-bottom:10px;padding-top:10px;padding-left:10px;padding-right:10px;">
     <div class="panel panel-primary class">
         <div class="panel-heading text-center">
-            <h4>Assembleia Geral de Representantes da Sociedade Civil</h4>
-            <h5>Eleição de seus membros de comporão o conselho municipal</h5>
-            <h5>Assistência Social de Sabará / CMAS biênio 2025/2027</h5>
+          
         </div>
     </div>
 </div>
